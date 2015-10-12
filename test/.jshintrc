@@ -1,0 +1,19 @@
+{
+  "extends": "../.jshintrc",
+  "jasmine": true,
+  "globals": {
+    "_": false,
+    "addSelectors": false,
+    "compileHtml": false,
+    "compileTemplate": false,
+    "createController": false,
+    "createScope": false,
+    "getJSONFixture": false,
+    "mox": false,
+    "promise": false,
+    "reject": false,
+    "requestTest": false,
+    "resourceResult": false
+  }
+}
+

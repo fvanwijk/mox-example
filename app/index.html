@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mox example app</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body ng-app="myApp">
+    <div class="container">
+      <h1>My cars</h1>
+      <div ng-view></div>
+
+    </div>
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/persons/personController.js"></script>
+    <script src="scripts/persons/personService.js"></script>
+    <script src="scripts/persons/personResource.js"></script>
+    <script src="scripts/persons/personsDirective.js"></script>
+</body>
+</html>
