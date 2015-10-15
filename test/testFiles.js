@@ -14,13 +14,6 @@ module.exports = [
     ]
   },
   {
-    type: 'src',
-    files: [
-      'app/scripts/**/*.js',
-      'app/scripts/**/*.html'
-    ]
-  },
-  {
     type: 'config',
     files: [
       'test/testConfig.js',
@@ -32,6 +25,19 @@ module.exports = [
     files: [
       'test/mock/**/*.json',
       'test/mock/**/*.html'
+    ]
+  },
+  {
+    type: 'src',
+    files: [
+      'app/scripts/**/*.js',
+      'app/scripts/**/*.html'
+    ]
+  },
+  {
+    type: 'ignore',
+    files: [
+      'app/scripts/**/*Spec.js'
     ]
   },
   {

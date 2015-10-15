@@ -2,22 +2,22 @@
 
 /**
  * @ngdoc overview
- * @name myApp
+ * @name moxExample
  * @description
  * # myApp
  *
  * Main module of the application.
  */
 angular
-  .module('myApp', [
+  .module('moxExample', [
     'ngResource',
     'ngRoute'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'scripts/persons/persons.html',
-        controller: 'PersonController'
+        templateUrl: 'scripts/todo/todoList.html',
+        controller: 'ToDoListController'
       })
       .otherwise({
         redirectTo: '/'
