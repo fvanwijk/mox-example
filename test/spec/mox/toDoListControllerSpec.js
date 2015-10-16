@@ -25,7 +25,7 @@ describe('ToDoListController', function () {
       .run();
 
     $scope = createScope();
-    
+
     // We could also mock $log
     $log = mox.inject('$log');
     spyOn($log, 'log');
