@@ -9,7 +9,7 @@ angular.module('moxExample')
       });
 
     $scope.save = function (toDoItem) {
-      ToDoService.savePerson(toDoItem)
+      return ToDoService.saveToDoItem(toDoItem)
         .catch(function () {
           $log.log('Error while saving');
         });

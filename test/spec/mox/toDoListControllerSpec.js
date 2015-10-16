@@ -16,15 +16,22 @@ describe('ToDoListController', function () {
       .mockServices('ToDoService')
       .setupResults(function () {
         return {
-          ToDoService: { getToDoList: promise(toDoList) }
+          ToDoService: {
+            getToDoList: promise(toDoList),
+            saveToDoItem: promise(toDoList[0])
+          }
         };
       })
       .run();
 
     $scope = createScope();
+    
+    // We could also mock $log
+    $log = mox.inject('$log');
+    spyOn($log, 'log');
   });
 
-  describe('the getList method', function () {
+  describe('on initialization', function () {
 
     it('should attach a to do list to the scope', function () {
       initController();
@@ -32,8 +39,6 @@ describe('ToDoListController', function () {
     });
 
     it('should $log a message when it fails', function () {
-      $log = mox.inject('$log');
-      spyOn($log, 'log');
       var msg = { data: 'FAIL!' };
       mox.get.ToDoService.getToDoList.and.returnValue(reject(msg));
 
@@ -42,5 +47,35 @@ describe('ToDoListController', function () {
       expect($log.log).toHaveBeenCalledWith(msg.data);
     });
 
+  });
+
+  describe('the save() scope method', function () {
+    var saveResult;
+
+    beforeEach(function () {
+      initController();
+      saveResult = $scope.save(toDoList[0]);
+    });
+
+    it('should save the ToDoItem via the ToDoService', function () {
+      expect(mox.get.ToDoService.saveToDoItem).toHaveBeenCalledWith(toDoList[0]);
+    });
+
+    it('should return the result promise', function () {
+      expect(saveResult).toResolveWith(toDoList[0]);
+    });
+
+    describe('when the ToDoService rejects', function () {
+      beforeEach(function () {
+        mox.get.ToDoService.saveToDoItem.and.returnValue(reject('Fail!'));
+        initController();
+      });
+
+      it('should log an error', function () {
+        $scope.save(toDoList[0]);
+        $scope.$digest();
+        expect($log.log).toHaveBeenCalledWith('Error while saving');
+      });
+    });
   });
 });
