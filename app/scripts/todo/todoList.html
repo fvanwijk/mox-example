@@ -1,6 +1,37 @@
-<ul id="toDoList">
-  <li ng-repeat="toDoItem in toDoList">{{toDoItem.content}}</li>
-</ul>
+<section class="todoapp">
+  <header class="header">
+    <h1>todos</h1>
+
+    <form ng-submit="addToDoItem()">
+      <input class="new-todo" placeholder="What needs to be done?" ng-model="newToDoItem" autofocus>
+    </form>
+  </header>
+  <section class="main" ng-show="toDoList.length">
+    <input class="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll()">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul class="todo-list">
+      <li ng-class="{ completed: toDoItem.completed, editing: toDoItem == editedToDoItem }" ng-repeat="toDoItem in toDoList | filter:statusFilter">
+        <div class="view">
+          <input class="toggle" type="checkbox" ng-model="toDoItem.done">
+          <label ng-dblclick="editToDoItem(toDoItem)">{{toDoItem.content}}</label>
+          <button class="destroy" ng-click="remove($index)"></button>
+        </div>
+        <form ng-submit="saveEdits(editedToDoItem, 'submit')">
+          <input class="edit" ng-model="editedToDoItem.content" ng-blur="saveEdits(editedToDoItem, 'blur')" to-do-escape="revertEdits(toDoItem)" to-do-focus="toDoItem == editedToDoItem">
+        </form>
+      </li>
+    </ul>
+  </section>
+  <footer class="footer" ng-show="toDoList.length">
+    <span class="todo-count"><strong>{{remainingCount}}</strong> <ng-pluralize count="remainingCount" when="{ one: 'item', other: 'items' }"></ng-pluralize> left</span>
+    <ul class="filters">
+      <li><a ng-class="{ selected: status == '' } " href="#/">All</a></li>
+      <li><a ng-class="{ selected: status == 'active' } " href="#/active">Active</a></li>
+      <li><a ng-class="{ selected: status == 'completed' } " href="#/completed">Completed</a></li>
+    </ul>
+    <button class="clear-completed" ng-show="completedCount" ng-click="clearCompleted()">Clear completed</button>
+  </footer>
+</section>
 
 <ul>
   <to-do-item item="toDoItem" ng-repeat="toDoItem in toDoList"></to-do-item>

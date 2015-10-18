@@ -30,12 +30,20 @@ describe('ToDoListController', function () {
 
       spyOn($log, 'log');
     });
+
+    ToDoService.getToDoList.and.returnValue($q.when(toDoList));
   });
 
   describe('on initialization', function () {
-    it('should attach a to do list to the scope', function () {
-      ToDoService.getToDoList.and.returnValue($q.when(toDoList));
+    it('should start with an empty to do list', function () {
+      $controller('ToDoListController', {
+        $scope: $scope,
+        ToDoService: ToDoService
+      });
+      expect($scope.toDoList).toEqual([]);
+    });
 
+    it('should attach a to do list to the scope', function () {
       initController();
 
       expect($scope.toDoList).toBe(toDoList);

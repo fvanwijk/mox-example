@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title>Mox example app</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
   </head>
   <body ng-app="moxExample">
     <div class="container">
-      <h1>My To Do List</h1>
+      <h1>Mox example app</h1>
       <div ng-view></div>
 
     </div>
@@ -20,8 +20,10 @@
 
     <script src="scripts/app.js"></script>
     <script src="scripts/todo/ToDoListController.js"></script>
-    <script src="scripts/todo/ToDoService.js"></script>
-    <script src="scripts/todo/ToDoResource.js"></script>
+    <script src="scripts/todo/ToDoEscapeDirective.js"></script>
+    <script src="scripts/todo/ToDoFocusDirective.js"></script>
     <script src="scripts/todo/ToDoItemDirective.js"></script>
+    <script src="scripts/todo/ToDoResource.js"></script>
+    <script src="scripts/todo/ToDoService.js"></script>
 </body>
 </html>

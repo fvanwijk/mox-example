@@ -14,11 +14,14 @@ angular
     'ngRoute'
   ])
   .config(function ($routeProvider) {
+    var routeConfig = {
+      templateUrl: 'scripts/todo/todoList.html',
+      controller: 'ToDoListController'
+    };
+
     $routeProvider
-      .when('/', {
-        templateUrl: 'scripts/todo/todoList.html',
-        controller: 'ToDoListController'
-      })
+      .when('/', routeConfig)
+      .when('/:status', routeConfig)
       .otherwise({
         redirectTo: '/'
       });

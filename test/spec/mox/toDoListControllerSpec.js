@@ -32,6 +32,10 @@ describe('ToDoListController', function () {
   });
 
   describe('on initialization', function () {
+    it('should start with an empty to do list', function () {
+      createController('ToDoListController', $scope);
+      expect($scope.toDoList).toEqual([]);
+    });
 
     it('should attach a to do list to the scope', function () {
       initController();
