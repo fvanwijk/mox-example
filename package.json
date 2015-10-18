@@ -3,6 +3,7 @@
   "author": "Frank van Wijk <fvanwijk@xebia.com>",
   "description": "Example project to demonstrate Mox",
   "version": "0.1.0",
+  "repository": "fvanwijk/mox-example",
   "dependencies": {
     "angular": "1.4.7",
     "angular-resource": "1.4.7",
