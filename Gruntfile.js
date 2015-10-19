@@ -114,6 +114,10 @@ module.exports = function (grunt) {
       }
     },
 
+    jsonlint: {
+      src: '<%= paths.test %>/mock/**/*.json'
+    },
+
     clean: {
       server: '.tmp'
     },
