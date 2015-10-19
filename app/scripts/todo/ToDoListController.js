@@ -35,7 +35,7 @@ angular.module('moxExample')
         return;
       }
       $scope.toDoList.push(newToDoItem);
-      $scope.newToDoItem = '';
+      delete $scope.newToDoItem;
     };
 
     $scope.markAll = function () {
