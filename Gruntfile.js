@@ -22,14 +22,14 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/**/*.js'],
-        tasks: ['newer:jshint:all', 'newer:jscs:src', 'newer:lintspaces:all'],
+        tasks: ['newer:jshint:all', 'newer:jscs:src'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'newer:jscs:test', 'newer:lintspaces:test', 'karma']
+        tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
       },
       gruntfile: {
         files: ['Gruntfile.js']
