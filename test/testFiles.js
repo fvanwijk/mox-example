@@ -35,12 +35,6 @@ module.exports = [
     ]
   },
   {
-    type: 'ignore',
-    files: [
-      'app/scripts/**/*Spec.js'
-    ]
-  },
-  {
     type: 'specs',
     files: [
       'test/spec/mox/**/*.js'
