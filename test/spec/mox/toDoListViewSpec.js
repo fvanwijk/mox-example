@@ -10,7 +10,7 @@ describe('toDoList.html', function () {
     mox
       .module('moxExample', template)
       .mockServices('ToDoService')
-      .mockDirectives('toDoItem')
+      .mockDirectives('toDoFilters')
       .setupResults(function () {
         return {
           ToDoService: {
@@ -21,11 +21,18 @@ describe('toDoList.html', function () {
       .run();
 
     $scope = createScope({
+      status: '',
       toDoList: toDoList
     });
     element = addSelectors(compileTemplate(template, $scope), {
       item: 'ul li',
-      toDoItem: 'to-do-item'
+      toDoFilters: 'to-do-filters'
+    });
+  });
+
+  it('should have a directive for showing the to do list filters', function () {
+    expect(element.toDoFilters()).toContainIsolateScope({
+      status: $scope.status
     });
   });
 

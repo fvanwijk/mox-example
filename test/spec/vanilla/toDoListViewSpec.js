@@ -18,6 +18,12 @@ describe('toDoList.html', function () {
   }
 
   beforeEach(function () {
+    angular.module('moxExample')
+      .decorator('toDoFiltersDirective', function ($delegate) {
+        delete $delegate[0].link;
+        delete $delegate[0].templateUrl;
+        return $delegate;
+      });
     module('moxExample', 'scripts/todo/toDoList.html');
 
     angular.mock.inject(function (_$compile_, _$rootScope_, _$templateCache_) {
@@ -30,6 +36,12 @@ describe('toDoList.html', function () {
       element = compileTemplate($scope);
       $scope.$digest();
     });
+  });
+
+  it('should have a directive for showing the to do list filters', function () {
+    expect(element.find('to-do-filters').isolateScope()).toEqual(jasmine.objectContaining({
+      status: $scope.status
+    }));
   });
 
   xdescribe('the link between controller and view (midway test)', function () {
