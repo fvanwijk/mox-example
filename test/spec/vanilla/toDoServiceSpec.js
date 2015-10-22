@@ -1,10 +1,8 @@
 describe('ToDoService', function () {
 
-  var toDoResource;
-
   beforeEach(module('moxExample', function ($provide) {
-    toDoResource = jasmine.createSpyObj('ToDoResource', ['get', 'query']);
-    $provide.value('ToDoResource', toDoResource);
+    ToDoResource = jasmine.createSpyObj('ToDoResource', ['get', 'query', '$save']);
+    $provide.value('ToDoResource', ToDoResource);
   }));
 
   var
@@ -14,14 +12,15 @@ describe('ToDoService', function () {
       { content: 'Include Mox', done: false },
       { content: 'Write tests', done: false }
     ],
+    ToDoResource,
     ToDoService;
 
-  beforeEach(angular.mock.inject(function ($q, $rootScope, _ToDoService_) {
+  beforeEach(angular.mock.inject(function ($q, $rootScope, _ToDoResource_, _ToDoService_) {
     $scope = $rootScope.$new();
 
     ToDoService = _ToDoService_;
 
-    toDoResource.query.and.returnValue({
+    ToDoResource.query.and.returnValue({
       $promise: $q.when(toDoList)
     });
 
@@ -57,6 +56,9 @@ describe('ToDoService', function () {
   });
 
   describe('the saveToDo method', function () {
-
+    it('should save the ToDoResource', function () {
+      ToDoService.saveToDoItem(ToDoResource);
+      expect(ToDoResource.$save).toHaveBeenCalled();
+    });
   });
 });

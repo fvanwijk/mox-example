@@ -1,6 +1,7 @@
 describe('ToDoService', function () {
 
-  var toDoList = getJSONFixture('toDoList.json');
+  var toDoList = getJSONFixture('toDoList.json'),
+    ToDoService;
 
   beforeEach(function () {
     mox
@@ -12,13 +13,22 @@ describe('ToDoService', function () {
         };
       })
       .run();
+
+    ToDoService = mox.inject('ToDoService');
   });
 
   describe('the getToDoList method', function () {
 
     it('should return list of ToDoResources', function () {
-      expect(mox.inject('ToDoService').getToDoList()).toHaveBeenResolvedWith(toDoList);
+      expect(ToDoService.getToDoList()).toHaveBeenResolvedWith(toDoList);
     });
 
+  });
+
+  describe('the saveToDoList method', function () {
+    it('should save the ToDoResource', function () {
+      ToDoService.saveToDoItem(new mox.get.ToDoResource.constructor());
+      expect(mox.get.ToDoResource.$save).toHaveBeenCalled();
+    });
   });
 });
