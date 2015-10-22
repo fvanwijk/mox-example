@@ -24,15 +24,7 @@
   </section>
   <footer class="footer" ng-show="toDoList.length">
     <span class="todo-count"><strong>{{remainingCount}}</strong> <ng-pluralize count="remainingCount" when="{ one: 'item', other: 'items' }"></ng-pluralize> left</span>
-    <ul class="filters">
-      <li><a ng-class="{ selected: status == '' } " href="#/">All</a></li>
-      <li><a ng-class="{ selected: status == 'active' } " href="#/active">Active</a></li>
-      <li><a ng-class="{ selected: status == 'completed' } " href="#/completed">Completed</a></li>
-    </ul>
+    <to-do-filters status="status"></to-do-filters>
     <button class="clear-completed" ng-show="completedCount" ng-click="clearCompleted()">Clear completed</button>
   </footer>
 </section>
-
-<ul>
-  <to-do-item item="toDoItem" ng-repeat="toDoItem in toDoList"></to-do-item>
-</ul>
