@@ -10,7 +10,7 @@
     <input class="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll()">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      <li ng-class="{ completed: toDoItem.completed, editing: toDoItem == editedToDoItem }" ng-repeat="toDoItem in toDoList | filter:statusFilter">
+      <li ng-class="{ completed: toDoItem.done, editing: toDoItem == editedToDoItem }" ng-repeat="toDoItem in toDoList | filter:statusFilter">
         <div class="view">
           <input class="toggle" type="checkbox" ng-model="toDoItem.done">
           <label ng-dblclick="editToDoItem(toDoItem)">{{toDoItem.content}}</label>

@@ -1,7 +1,6 @@
 angular.module('moxExample')
-  .directive('toDoEscape', function () {
-    var ESCAPE_KEY = 27;
-
+  .constant('ESCAPE_KEY', 27)
+  .directive('toDoEscape', function (ESCAPE_KEY) {
     return function ($scope, elem, attrs) {
       elem.bind('keydown', function (event) {
         if (event.keyCode === ESCAPE_KEY) {
