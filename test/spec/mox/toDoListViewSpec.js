@@ -60,7 +60,7 @@ describe('toDoList.html', function () {
     });
   });
 
-  xit('should hide the main section and footer section when the list is empty', function () {
+  it('should hide the main section and footer section when the list is empty', function () {
     expect(element.main()).not.toBeHidden();
     expect(element.footer()).not.toBeHidden();
 
@@ -71,7 +71,7 @@ describe('toDoList.html', function () {
     expect(element.footer()).toBeHidden();
   });
 
-  it('should have a field to add new to do items', function () {
+  xit('should have a field to add new to do items', function () {
     element.header().form().submit();
 
     expect($scope.addToDoItem).toHaveBeenCalled();
@@ -128,7 +128,7 @@ describe('toDoList.html', function () {
     expect(element.main().items(0).editInput()).toBeFocused();
   });
 
-  it('should save an edited to do item when submitting', function () {
+  xit('should save an edited to do item when submitting', function () {
     $scope.editedToDoItem = 'Edited to do';
     element.main().items(0).editForm().submit();
     expect($scope.saveEdits).toHaveBeenCalledWith($scope.editedToDoItem, 'submit');
