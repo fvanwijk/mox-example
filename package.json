@@ -23,6 +23,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-istanbul-coverage": "0.1.1",
     "grunt-jscs": "2.1.0",
+    "grunt-jsonlint": "1.0.5",
     "grunt-karma": "0.12.1",
     "grunt-newer": "1.1.1",
     "jasmine-jquery": "2.1.1",

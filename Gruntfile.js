@@ -115,7 +115,7 @@ module.exports = function (grunt) {
     },
 
     jsonlint: {
-      src: '<%= paths.test %>/mock/**/*.json'
+      src: 'test/mock/**/*.json'
     },
 
     clean: {
