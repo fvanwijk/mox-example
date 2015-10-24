@@ -4,7 +4,7 @@ describe('toDoList.html', function () {
     $scope,
     element,
     template = 'scripts/todo/toDoList.html',
-    toDoList = angular.copy(getJSONFixture('toDoList.json'));
+    toDoList = getJSONFixture('toDoList.json');
 
   beforeEach(function () {
     mox
@@ -23,7 +23,7 @@ describe('toDoList.html', function () {
       completedCount: 1,
       remainingCount: 2,
       status: '',
-      toDoList: toDoList
+      toDoList: angular.copy(toDoList)
     });
     element = addSelectors(compileTemplate(template, $scope), {
       header: {
@@ -71,8 +71,8 @@ describe('toDoList.html', function () {
     expect(element.footer()).toBeHidden();
   });
 
-  xit('should have a field to add new to do items', function () {
-    element.header().form().submit();
+  it('should have a field to add new to do items', function () {
+    element.header().form().triggerHandler('submit');
 
     expect($scope.addToDoItem).toHaveBeenCalled();
   });
@@ -94,7 +94,7 @@ describe('toDoList.html', function () {
     expect(element.main().items()).toHaveLength(2);
   });
 
-  xit('should toggle the "completed" status', function () {
+  it('should toggle the "completed" status', function () {
     element.main().items(1).checkbox().click();
     element.main().items(0).checkbox().click();
     expect($scope.toDoList[0].done).toBe(false);
@@ -128,9 +128,9 @@ describe('toDoList.html', function () {
     expect(element.main().items(0).editInput()).toBeFocused();
   });
 
-  xit('should save an edited to do item when submitting', function () {
+  it('should save an edited to do item when submitting', function () {
     $scope.editedToDoItem = 'Edited to do';
-    element.main().items(0).editForm().submit();
+    element.main().items(0).editForm().triggerHandler('submit');
     expect($scope.saveEdits).toHaveBeenCalledWith($scope.editedToDoItem, 'submit');
   });
 
@@ -179,17 +179,5 @@ describe('toDoList.html', function () {
     $scope.$digest();
 
     expect(element.footer().clearCompletedButton()).toBeHidden();
-  });
-
-  xdescribe('the link between controller and view (midway test)', function () {
-    it('should have the same toDoList on the scope', function () {
-      // TODO: service wegmocken
-      var ctrlScope = createScope();
-      createController('ToDoListController', ctrlScope);
-      $scope.$digest();
-
-      expect(ctrlScope.toDoList).toEqual(toDoList);
-      //var element = compileTemplate(template, ctrlScope);
-    });
   });
 });
