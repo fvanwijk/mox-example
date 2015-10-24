@@ -22,13 +22,13 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/**/*.js'],
-        tasks: ['newer:jshint:all', 'newer:jscs:src'],
+        tasks: ['newer:jshint:src', 'newer:jscs:src'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
       },
       jsTest: {
-        files: ['test/spec/{,*/}*.js'],
+        files: ['test/spec/**/*.js'],
         tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
       },
       gruntfile: {
@@ -86,7 +86,7 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
-      all: {
+      src: {
         src: [
           'Gruntfile.js',
           '<%= yeoman.app %>/scripts/**/*.js'
@@ -123,13 +123,14 @@ module.exports = function (grunt) {
     },
 
     karma: {
-      vanilla: {
-        configFile: 'test/karma.vanilla.conf.js',
+      options: {
         singleRun: true
       },
+      vanilla: {
+        configFile: 'test/karma.vanilla.conf.js'
+      },
       mox: {
-        configFile: 'test/karma.mox.conf.js',
-        singleRun: true
+        configFile: 'test/karma.mox.conf.js'
       }
     },
 
@@ -149,7 +150,6 @@ module.exports = function (grunt) {
     }
   });
 
-
   grunt.registerTask('serve', 'Compile then start a connect web server', function () {
     grunt.task.run([
       'clean',
@@ -161,6 +161,8 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'connect:test',
     'karma:mox',
+    'coverage',
+    'karma:vanilla',
     'coverage'
   ]);
 
