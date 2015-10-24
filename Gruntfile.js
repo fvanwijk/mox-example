@@ -160,7 +160,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'connect:test',
-    'karma',
+    'karma:mox',
     'coverage'
   ]);
 
