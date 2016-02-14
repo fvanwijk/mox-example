@@ -141,11 +141,12 @@ describe('toDoList.html', function () {
   });
 
   it('should revert edits when pressing escape while editing', function () {
+    var e = angular.element.Event('keydown');
+
     function triggerEdit() {
       getItems().eq(0).find('.edit').trigger(e);
     }
 
-    var e = angular.element.Event('keydown');
     e.keyCode = 0;
     triggerEdit();
     expect($scope.revertEdits).not.toHaveBeenCalledWith($scope.toDoList[0]);
