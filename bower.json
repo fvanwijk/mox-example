@@ -1,7 +1,6 @@
 {
-	"name": "mox-example",
-	"version": "0.1.0",
-	"dependencies": {},
-	"devDependencies": {},
-	"appPath": "app"
+  "name": "mox-example",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {}
 }

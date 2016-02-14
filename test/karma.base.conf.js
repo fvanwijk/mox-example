@@ -4,7 +4,7 @@ module.exports = function (config) {
     basePath: '../',
     frameworks: ['jasmine'],
     port: 8080,
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS2'],
     singleRun: false,
     colors: true,
     logLevel: config.LOG_INFO,

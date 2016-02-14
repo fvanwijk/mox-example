@@ -1,6 +1,6 @@
 module.exports = {
   basePath: '../',
-  debug: true,
+  //debug: true,
   testFramework: 'jasmine',
   delays: {
     edit: 500
@@ -10,6 +10,12 @@ module.exports = {
       return require('wallaby-ng-html2js-preprocessor').transform(file, {
         stripPrefix: 'app/'
       });
+    }
+  },
+  env: {
+    runner: require('phantomjs2-ext').path,
+    params: {
+      runner: '--web-security=false'
     }
   }
 };
