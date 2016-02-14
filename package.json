@@ -29,6 +29,7 @@
     "jasmine-jquery": "2.1.1",
     "jasmine-mox-matchers": "0.3.1",
     "jquery": "2.2.0",
+    "jscs-stylish": "0.3.1",
     "jshint-stylish": "2.1.0",
     "karma": "0.13.21",
     "karma-coverage": "0.5.3",

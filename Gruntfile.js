@@ -67,7 +67,7 @@ module.exports = function (grunt) {
     jscs: {
       options: {
         config: './.jscsrc',
-        //reporter: require('jscs-stylish').path
+        reporter: require('jscs-stylish').path
       },
       src: {
         files: {
