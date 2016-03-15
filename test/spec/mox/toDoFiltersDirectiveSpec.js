@@ -9,10 +9,10 @@ describe('toDoItem directive', function () {
       .module('moxExample', 'scripts/todo/toDoFilters.html')
       .run();
 
-    $scope = createScope({
+    $scope = m.createScope({
       status: ''
     });
-    element = addSelectors(compileHtml('<to-do-filters status="status"></to-do-filters>', $scope), {
+    element = m.addSelectors(m.compileHtml('<to-do-filters status="status"></to-do-filters>', $scope), {
       items: {
         repeater: 'li',
         sub: {

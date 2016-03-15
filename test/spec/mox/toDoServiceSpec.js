@@ -9,12 +9,12 @@ describe('ToDoService', function () {
       .mockServices('ToDoResource')
       .setupResults(function () {
         return {
-          ToDoResource: { query: resourceResult(toDoList) }
+          ToDoResource: { query: m.resourceResult(toDoList) }
         };
       })
       .run();
 
-    ToDoService = mox.inject('ToDoService');
+    ToDoService = m.inject('ToDoService');
   });
 
   describe('the getToDoList method', function () {

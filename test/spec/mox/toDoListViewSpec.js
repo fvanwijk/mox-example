@@ -12,7 +12,7 @@ describe('toDoList.html', function () {
       .mockDirectives('toDoFilters')
       .run();
 
-    $scope = createScope({
+    $scope = m.createScope({
       addToDoItem: jasmine.createSpy('addToDoItem'),
       markAll: jasmine.createSpy('markAll'),
       editToDoItem: jasmine.createSpy('editToDoItem'),
@@ -25,7 +25,7 @@ describe('toDoList.html', function () {
       status: '',
       toDoList: angular.copy(toDoList)
     });
-    element = addSelectors(compileTemplate(template, $scope), {
+    element = m.addSelectors(m.compileTemplate(template, $scope), {
       header: {
         selector: '.header',
         sub: {
@@ -123,7 +123,7 @@ describe('toDoList.html', function () {
   it('should focus the edit field when starting editing', function () {
     $scope.editedToDoItem = $scope.toDoList[0];
     $scope.$digest();
-    mox.inject('$timeout').flush();
+    m.inject('$timeout').flush();
 
     expect(element.main().items(0).editInput()).toBeFocused();
   });
@@ -146,7 +146,7 @@ describe('toDoList.html', function () {
     element.main().items(0).editInput().trigger(e);
     expect($scope.revertEdits).not.toHaveBeenCalledWith($scope.toDoList[0]);
 
-    e.keyCode = mox.inject('ESCAPE_KEY');
+    e.keyCode = m.inject('ESCAPE_KEY');
     element.main().items(0).editInput().trigger(e);
     expect($scope.revertEdits).toHaveBeenCalledWith($scope.toDoList[0]);
   });

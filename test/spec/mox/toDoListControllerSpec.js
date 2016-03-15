@@ -6,7 +6,7 @@ describe('ToDoListController', function () {
     toDoList = getJSONFixture('toDoList.json');
 
   function initController() {
-    createController('ToDoListController', $scope);
+    m.createController('ToDoListController', $scope);
     $scope.$digest();
   }
 
@@ -21,24 +21,24 @@ describe('ToDoListController', function () {
       .setupResults(function () {
         return {
           ToDoService: {
-            getToDoList: promise(toDoList),
-            saveToDoItem: promise(toDoList[0])
+            getToDoList: m.promise(toDoList),
+            saveToDoItem: m.promise(toDoList[0])
           }
         };
       })
       .run();
 
     mox.get.filterFilter.and.callThrough();
-    $scope = createScope();
+    $scope = m.createScope();
 
     // We could also mock $log
-    $log = mox.inject('$log');
+    $log = m.inject('$log');
     spyOn($log, 'log');
   });
 
   describe('on initialization', function () {
     it('should start with an empty to do list', function () {
-      createController('ToDoListController', $scope);
+      m.createController('ToDoListController', $scope);
       expect($scope.toDoList).toEqual([]);
     });
 
@@ -49,7 +49,7 @@ describe('ToDoListController', function () {
 
     it('should $log a message when it fails', function () {
       var msg = { data: 'FAIL!' };
-      mox.get.ToDoService.getToDoList.and.returnValue(reject(msg));
+      mox.get.ToDoService.getToDoList.and.returnValue(m.reject(msg));
 
       initController();
 
@@ -323,7 +323,7 @@ describe('ToDoListController', function () {
 
     describe('when the ToDoService rejects', function () {
       beforeEach(function () {
-        mox.get.ToDoService.saveToDoItem.and.returnValue(reject('Fail!'));
+        mox.get.ToDoService.saveToDoItem.and.returnValue(m.reject('Fail!'));
         initController();
       });
 
