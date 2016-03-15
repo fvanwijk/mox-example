@@ -24,7 +24,7 @@ describe('ToDoListController', function () {
   }
 
   beforeEach(function () {
-    module('moxExample');
+    angular.mock.module('moxExample');
     angular.mock.inject(function (_$controller_, _$log_, _$q_, $rootScope, _$routeParams_, _filterFilter_) {
       $controller = _$controller_;
       $log = _$log_;

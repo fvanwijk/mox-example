@@ -28,7 +28,7 @@ describe('toDoList.html', function () {
         delete $delegate[0].templateUrl;
         return $delegate;
       });
-    module('moxExample', 'scripts/todo/toDoList.html');
+    angular.mock.module('moxExample', 'scripts/todo/toDoList.html');
 
     angular.mock.inject(function (_$compile_, _$rootScope_, _$templateCache_) {
       $compile = _$compile_;
@@ -140,7 +140,7 @@ describe('toDoList.html', function () {
     expect($scope.saveEdits).toHaveBeenCalledWith($scope.editedToDoItem, 'blur');
   });
 
-  it('should revert edits when pressing escape while editing', function () {
+  it('should revert edits when pressing escape while editing', angular.mock.inject(function (ESCAPE_KEY) {
     var e = angular.element.Event('keydown');
 
     function triggerEdit() {
@@ -151,7 +151,7 @@ describe('toDoList.html', function () {
     triggerEdit();
     expect($scope.revertEdits).not.toHaveBeenCalledWith($scope.toDoList[0]);
 
-    e.keyCode = mox.inject('ESCAPE_KEY');
+    e.keyCode = ESCAPE_KEY;
     triggerEdit();
     expect($scope.revertEdits).toHaveBeenCalledWith($scope.toDoList[0]);
   });

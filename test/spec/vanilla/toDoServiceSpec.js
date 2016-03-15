@@ -10,7 +10,7 @@ describe('ToDoService', function () {
     ToDoResource,
     ToDoService;
 
-  beforeEach(module('moxExample', function ($provide) {
+  beforeEach(angular.mock.module('moxExample', function ($provide) {
     ToDoResource = jasmine.createSpyObj('ToDoResource', ['get', 'query', '$save']);
     $provide.value('ToDoResource', ToDoResource);
   }));

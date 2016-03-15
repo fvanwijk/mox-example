@@ -1,11 +1,12 @@
 var
-  testFiles = require('./test/testFiles.js'),
-  wallabyFiles = require('test-runner-config').getWallabyFiles(testFiles),
-  config = require('./wallaby.base.conf.js');
+  webpackConfig = file => ({ pattern: file, instrument: true, load: false, ignore: false }),
+  wallabyFiles = require('test-runner-config').getWallabyFiles(require('./test/testFiles.js'), {
+    specs: webpackConfig
+  });
 
-config.files = wallabyFiles.files;
-config.tests = wallabyFiles.tests;
-
-module.exports = function () {
-  return config;
+module.exports = function (wallaby) {
+  return Object.assign(require('./wallaby.base.conf.js')(wallaby), {
+    files: wallabyFiles.files,
+    tests: wallabyFiles.tests
+  });
 };

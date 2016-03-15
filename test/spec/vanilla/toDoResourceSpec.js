@@ -1,6 +1,6 @@
 describe('ToDoResource', function () {
 
-  beforeEach(module('moxExample'));
+  beforeEach(angular.mock.module('moxExample'));
 
   var
     $httpBackend,

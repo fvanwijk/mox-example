@@ -1,4 +1,5 @@
 var
+  webpackConfig = file => ({ pattern: file, instrument: true, load: false, ignore: false }),
   files = require('./test/testFiles.js')
     .map(function (group) {
       if (group.type === 'specs') {
@@ -6,12 +7,13 @@ var
       }
       return group;
     }),
-  wallabyFiles = require('test-runner-config').getWallabyFiles(files),
-  config = require('./wallaby.base.conf.js');
+  wallabyFiles = require('test-runner-config').getWallabyFiles(files, {
+    specs: webpackConfig
+  });
 
-config.files = wallabyFiles.files;
-config.tests = wallabyFiles.tests;
-
-module.exports = function () {
-  return config;
+module.exports = function (wallaby) {
+  return Object.assign(require('./wallaby.base.conf.js')(wallaby), {
+    files: wallabyFiles.files,
+    tests: wallabyFiles.tests
+  });
 };

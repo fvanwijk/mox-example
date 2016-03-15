@@ -1,6 +1,6 @@
 describe('toDoFilters directive', function () {
 
-  beforeEach(module('moxExample', 'scripts/todo/toDoFilters.html'));
+  beforeEach(angular.mock.module('moxExample', 'scripts/todo/toDoFilters.html'));
 
   var
     $scope,
