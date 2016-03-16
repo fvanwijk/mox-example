@@ -14,7 +14,7 @@ describe('ToDoListController', function () {
     mox
       .module('moxExample')
       .mockServices(
-        '$routeParams',
+        ['$routeParams', { status: 'completed' }], // see moxConfig.js
         'filterFilter',
         'ToDoService'
       )
@@ -57,6 +57,8 @@ describe('ToDoListController', function () {
     });
 
     it('should set the status on the scope, based on the $routeParams', function () {
+      // $routeParams is default mocked as { status: 'completed' }
+      mox.get.$routeParams.status = undefined;
       initController();
       expect($scope.status).toBe('');
 
@@ -67,15 +69,15 @@ describe('ToDoListController', function () {
 
     it('should set the status filter based on the status', function () {
       initController();
-      expect($scope.statusFilter).toEqual({});
+      expect($scope.statusFilter).toEqual({ done: true });
 
       mox.get.$routeParams.status = 'active';
       initController();
       expect($scope.statusFilter).toEqual({ done: false });
 
-      mox.get.$routeParams.status = 'completed';
+      mox.get.$routeParams.status = undefined;
       initController();
-      expect($scope.statusFilter).toEqual({ done: true });
+      expect($scope.statusFilter).toEqual({});
     });
 
   });
