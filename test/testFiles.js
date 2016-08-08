@@ -16,8 +16,7 @@ module.exports = [
   {
     type: 'config',
     files: [
-      'test/testConfig.js',
-      'test/moxConfig.js'
+      'test/testConfig.js'
     ]
   },
   {
