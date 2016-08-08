@@ -10,7 +10,6 @@ module.exports = [
       'node_modules/angular-route/angular-route.js',
       'node_modules/lodash/lodash.js',
       'node_modules/jasmine-mox-matchers/src/jasmine-mox-matchers.js',
-      'node_modules/angular-mox/dist/mox.js'
     ]
   },
   {
