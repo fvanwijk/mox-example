@@ -5,7 +5,8 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
     preprocessors: {
       'app/scripts/**/*.html': 'ng-html2js',
-      'test/spec/**/*.js': ['webpack', 'sourcemap']
+      'test/testConfig.js': ['webpack'],
+      'test/spec/**/*.js': ['webpack']
     },
     ngHtml2JsPreprocessor: {
       stripPrefix: 'app/'

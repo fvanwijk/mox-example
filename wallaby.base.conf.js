@@ -4,13 +4,13 @@ var webpackPostprocessor = wallabyWebpack({});
 module.exports = function (wallaby) {
   return {
     basePath: '../',
-    //debug: true,
     testFramework: 'jasmine',
     delays: {
       edit: 500
     },
     compilers: {
-      'test/spec/**/*.js': wallaby.compilers.babel()
+      'test/spec/**/*.js': wallaby.compilers.babel(),
+      'test/testConfig.js': wallaby.compilers.babel()
     },
     preprocessors: {
       'app/scripts/**/*.html': function html2js(file) {
@@ -29,5 +29,5 @@ module.exports = function (wallaby) {
         runner: '--web-security=false'
       }
     }
-  }
+  };
 };

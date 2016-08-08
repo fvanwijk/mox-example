@@ -1,6 +1,7 @@
 var
   webpackConfig = file => ({ pattern: file, instrument: true, load: false, ignore: false }),
   wallabyFiles = require('test-runner-config').getWallabyFiles(require('./test/testFiles.js'), {
+    config: webpackConfig,
     specs: webpackConfig
   });
 
