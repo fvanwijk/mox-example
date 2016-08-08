@@ -1,5 +1,4 @@
 describe('ToDoListController', function () {
-
   var
     $log,
     $scope,

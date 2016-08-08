@@ -154,7 +154,7 @@ describe('toDoList.html', function () {
     e.keyCode = ESCAPE_KEY;
     triggerEdit();
     expect($scope.revertEdits).toHaveBeenCalledWith($scope.toDoList[0]);
-  });
+  }));
 
   it('should add a "completed" class to the list item when the to do item is completed', function () {
     var items = getItems();

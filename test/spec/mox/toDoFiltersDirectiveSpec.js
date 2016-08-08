@@ -1,4 +1,4 @@
-describe('toDoItem directive', function () {
+describe('toDoFilters directive', function () {
 
   var
     $scope,
