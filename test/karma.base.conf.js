@@ -1,4 +1,10 @@
+let reporters = ['progress'];
+
 module.exports = function (config) {
+  reporters.push('coverage');
+  if (config.coverage || process.env.COVERAGE) {
+  }
+
   config.set({
     autoWatch: true,
     basePath: '../',
@@ -21,24 +27,32 @@ module.exports = function (config) {
     ],
     webpack: {
       module: {
+        preLoaders: [
+          {
+            test: /\.js$/,
+            //include: /scripts/,
+            loader: 'isparta'
+          }
+        ],
         loaders: [
           {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel' // 'babel-loader' is also a legal name to reference
-          },
+          }/*,
           {
             test: /\.js$/,
-            include: /src/,
+            include: /app\/scripts/,
             loader: 'isparta'
-          }
+          }*/
         ]
       },
       devtool: 'inline-source-map'
     },
-    reporters: ['progress', 'coverage'],
+    reporters: reporters,
     coverageReporter: {
       dir: 'test/coverage',
+      subdir: '.',
       reporters: [
         { type: 'lcov' },
         { type: 'text-summary' },
@@ -47,7 +61,7 @@ module.exports = function (config) {
     },
     port: 8080,
     browsers: ['PhantomJS2'],
-    singleRun: false,
+    singleRun: true,
     colors: true,
     logLevel: config.LOG_INFO
   });

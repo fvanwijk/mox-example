@@ -10,10 +10,11 @@ describe('ToDoService', function () {
     ToDoResource,
     ToDoService;
 
-  beforeEach(angular.mock.module('moxExample', function ($provide) {
+  beforeEach(function () {
     ToDoResource = jasmine.createSpyObj('ToDoResource', ['get', 'query', '$save']);
-    $provide.value('ToDoResource', ToDoResource);
-  }));
+    angular.module('moxExample').value('ToDoResource', ToDoResource);
+    angular.mock.module('moxExample');
+  });
 
   beforeEach(angular.mock.inject(function ($q, $rootScope, _ToDoResource_, _ToDoService_) {
     $scope = $rootScope.$new();
