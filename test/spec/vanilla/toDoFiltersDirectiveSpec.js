@@ -1,6 +1,12 @@
 describe('toDoFilters directive', function () {
 
-  beforeEach(module('moxExample', 'scripts/todo/toDoFilters.html'));
+  beforeEach(module('moxExample', 'scripts/todo/toDoFilters.html', function ($provide) {
+    $provide.value('upperFilter', jasmine.createSpy('upperFilter') // original implementation not available
+      .and.callFake(function (input) {
+        return input;
+      })
+    );
+  }));
 
   var
     $scope,

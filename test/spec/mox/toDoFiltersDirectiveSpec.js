@@ -7,6 +7,12 @@ describe('toDoItem directive', function () {
   beforeEach(function () {
     mox
       .module('moxExample', 'scripts/todo/toDoFilters.html')
+      .mockServices('upperFilter')
+      .setupResults(function () {
+        return {
+          upperFilter: function (input) { return input; }
+        };
+      })
       .run();
 
     $scope = createScope({
